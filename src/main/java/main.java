@@ -41,5 +41,25 @@ public class main {
         roads.addEdge(2, 3);
         roads.addEdge(3, 2);
         System.out.println("SCC: " + Kosaraju.findSCC(roads));
+
+        ArrayList<Edge> primResult = Prim.findMST(city);
+        long primWeight = 0;
+        for (Edge edge : primResult) primWeight += edge.weight;
+        if (primResult.size() == city.vertices - 1) {
+            System.out.println("Prim MST cost: " + primWeight);
+            System.out.println("Same MST cost: " + (primWeight == totalWeight));
+        } else {
+            System.out.println("Prim: graph is disconnected; forest cost: " + primWeight);
+        }
+
+        Dijkstra.Result paths = Dijkstra.shortestPaths(city, 0);
+        for (int vertex = 0; vertex < city.vertices; vertex++) {
+            if (paths.distances[vertex] == Long.MAX_VALUE) {
+                System.out.println("0 -> " + vertex + ": unreachable");
+            } else {
+                System.out.println("0 -> " + vertex + ": distance="
+                        + paths.distances[vertex] + ", path=" + paths.pathTo(vertex));
+            }
+        }
     }
 }

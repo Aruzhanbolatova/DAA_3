@@ -3,6 +3,9 @@ public class Graph {
     int vertices;
     ArrayList<Edge> edges;
     public Graph(int vertices) {
+        if (vertices < 1) {
+            throw new IllegalArgumentException("At least one vertex is required");
+        }
         this.vertices = vertices;
         this.edges = new ArrayList<>();
     }
