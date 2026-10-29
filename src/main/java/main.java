@@ -21,19 +21,25 @@ public class main {
             System.out.println("Graph is disconnected: MST does not exist");
             System.out.println("Forest cost: " + totalWeight);
         }
-
         DirectedGraph dependencies = new DirectedGraph(4);
         dependencies.addEdge(0, 1);
         dependencies.addEdge(0, 2);
         dependencies.addEdge(1, 3);
         dependencies.addEdge(2, 3);
         System.out.println("Topological order: " + TopologicalSort.sort(dependencies));
-
         dependencies.addEdge(3, 0);
         try {
             TopologicalSort.sort(dependencies);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
         }
+
+        DirectedGraph roads = new DirectedGraph(5);
+        roads.addEdge(0, 1);
+        roads.addEdge(1, 0);
+        roads.addEdge(1, 2);
+        roads.addEdge(2, 3);
+        roads.addEdge(3, 2);
+        System.out.println("SCC: " + Kosaraju.findSCC(roads));
     }
 }
