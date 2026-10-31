@@ -5,9 +5,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class Daa3ApplicationTests {
-
     @Test
     void contextLoads() {
     }
-
 }

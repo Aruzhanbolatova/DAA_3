@@ -3,9 +3,14 @@ import java.util.ArrayList;
 
 public class TopologicalSort {
     public static ArrayList<Integer> sort(DirectedGraph graph) {
+        return sort(graph, new OperationStats());
+    }
+
+    public static ArrayList<Integer> sort(DirectedGraph graph, OperationStats stats) {
         int[] indegree = new int[graph.vertices];
         for (int from = 0; from < graph.vertices; from++) {
             for (int to : graph.adjacency.get(from)) {
+                stats.edgeExaminations++;
                 indegree[to]++;
             }
         }
@@ -22,6 +27,7 @@ public class TopologicalSort {
             int vertex = queue.remove();
             order.add(vertex);
             for (int neighbor : graph.adjacency.get(vertex)) {
+                stats.edgeExaminations++;
                 indegree[neighbor]--;
                 if (indegree[neighbor] == 0) {
                     queue.add(neighbor);

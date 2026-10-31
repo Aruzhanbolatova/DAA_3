@@ -31,12 +31,17 @@ public class Dijkstra {
     }
 
     public static Result shortestPaths(Graph graph, int source) {
+        return shortestPaths(graph, source, new OperationStats());
+    }
+
+    public static Result shortestPaths(Graph graph, int source, OperationStats stats) {
         if (source < 0 || source >= graph.vertices) {
             throw new IllegalArgumentException("Invalid source");
         }
         ArrayList<ArrayList<Edge>> adjacency = new ArrayList<>();
         for (int i = 0; i < graph.vertices; i++) adjacency.add(new ArrayList<>());
         for (Edge edge : graph.edges) {
+            stats.edgeExaminations++;
             if (edge.weight < 0) {
                 throw new IllegalArgumentException("Dijkstra requires non-negative weights");
             }
@@ -47,13 +52,17 @@ public class Dijkstra {
         int[] previous = new int[graph.vertices];
         Arrays.fill(distances, Long.MAX_VALUE);
         Arrays.fill(previous, -1);
-        PriorityQueue<Entry> queue = new PriorityQueue<>(Comparator.comparingLong(Entry::distance));
+        PriorityQueue<Entry> queue = new PriorityQueue<>((a, b) -> {
+            stats.comparisons++;
+            return Long.compare(a.distance, b.distance);
+        });
         distances[source] = 0;
         queue.add(new Entry(source, 0));
         while (!queue.isEmpty()) {
             Entry current = queue.remove();
             if (current.distance != distances[current.vertex]) continue;
             for (Edge edge : adjacency.get(current.vertex)) {
+                stats.edgeExaminations++;
                 long candidate = current.distance + edge.weight;
                 if (candidate < distances[edge.to]) {
                     distances[edge.to] = candidate;

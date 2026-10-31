@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="600" viewBox="0 0 1180 600">
+<rect width="1180" height="600" fill="white"/>
+<g font-family="Arial,sans-serif" font-size="15" fill="#1e293b">
+<text x="90" y="38" font-size="25">Execution time vs. edges</text>
+<text x="90" y="65">Mean of 5 measured runs after 10 warm-ups; seed 42; linear axes</text>
+<path d="M90 495.00 H810" stroke="#e2e8f0"/>
+<text x="80" y="500.00" text-anchor="end">0.000</text>
+<path d="M90 419.00 H810" stroke="#e2e8f0"/>
+<text x="80" y="424.00" text-anchor="end">0.206</text>
+<path d="M90 343.00 H810" stroke="#e2e8f0"/>
+<text x="80" y="348.00" text-anchor="end">0.412</text>
+<path d="M90 267.00 H810" stroke="#e2e8f0"/>
+<text x="80" y="272.00" text-anchor="end">0.618</text>
+<path d="M90 191.00 H810" stroke="#e2e8f0"/>
+<text x="80" y="196.00" text-anchor="end">0.824</text>
+<path d="M90 115.00 H810" stroke="#e2e8f0"/>
+<text x="80" y="120.00" text-anchor="end">1.030</text>
+<path d="M90 115 V495 H810" fill="none" stroke="#334155"/>
+<text x="94.32" y="520" text-anchor="middle">30</text>
+<text x="162.00" y="520" text-anchor="middle">500</text>
+<text x="810.00" y="520" text-anchor="middle">5000</text>
+<text x="450" y="557" text-anchor="middle">Number of edges (E)</text>
+<text transform="translate(23 310) rotate(-90)" text-anchor="middle">Mean execution time (ms)</text>
+<text x="90" y="585" font-size="13">V and E change together; these charts do not isolate their independent effects.</text>
+<polyline points="94.32,489.63 162.00,438.03 810.00,226.53" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<circle cx="94.32" cy="489.63" r="4" fill="#2563eb"><title>Kruskal / connected-undirected: 0.0146 ms</title></circle>
+<circle cx="162.00" cy="438.03" r="4" fill="#2563eb"><title>Kruskal / connected-undirected: 0.1544 ms</title></circle>
+<circle cx="810.00" cy="226.53" r="4" fill="#2563eb"><title>Kruskal / connected-undirected: 0.7277 ms</title></circle>
+<path d="M850 135 h24" stroke="#2563eb" stroke-width="3"/>
+<text x="885" y="140" font-size="14">Kruskal / connected-undirected</text>
+<polyline points="94.32,484.86 162.00,424.49 810.00,155.71" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+<circle cx="94.32" cy="484.86" r="4" fill="#dc2626"><title>Prim / connected-undirected: 0.0275 ms</title></circle>
+<circle cx="162.00" cy="424.49" r="4" fill="#dc2626"><title>Prim / connected-undirected: 0.1911 ms</title></circle>
+<circle cx="810.00" cy="155.71" r="4" fill="#dc2626"><title>Prim / connected-undirected: 0.9196 ms</title></circle>
+<path d="M850 175 h24" stroke="#dc2626" stroke-width="3"/>
+<text x="885" y="180" font-size="14">Prim / connected-undirected</text>
+<polyline points="94.32,488.62 162.00,421.98 810.00,317.64" fill="none" stroke="#0891b2" stroke-width="2.5"/>
+<circle cx="94.32" cy="488.62" r="4" fill="#0891b2"><title>Dijkstra / connected-undirected: 0.0173 ms</title></circle>
+<circle cx="162.00" cy="421.98" r="4" fill="#0891b2"><title>Dijkstra / connected-undirected: 0.1979 ms</title></circle>
+<circle cx="810.00" cy="317.64" r="4" fill="#0891b2"><title>Dijkstra / connected-undirected: 0.4807 ms</title></circle>
+<path d="M850 215 h24" stroke="#0891b2" stroke-width="3"/>
+<text x="885" y="220" font-size="14">Dijkstra / connected-undirected</text>
+<polyline points="94.32,490.35 162.00,471.71 810.00,398.03" fill="none" stroke="#059669" stroke-width="2.5"/>
+<circle cx="94.32" cy="490.35" r="4" fill="#059669"><title>Kosaraju / DAG: 0.0126 ms</title></circle>
+<circle cx="162.00" cy="471.71" r="4" fill="#059669"><title>Kosaraju / DAG: 0.0631 ms</title></circle>
+<circle cx="810.00" cy="398.03" r="4" fill="#059669"><title>Kosaraju / DAG: 0.2628 ms</title></circle>
+<path d="M850 255 h24" stroke="#059669" stroke-width="3"/>
+<text x="885" y="260" font-size="14">Kosaraju / DAG</text>
+<polyline points="94.32,491.15 162.00,473.15 810.00,388.00" fill="none" stroke="#9333ea" stroke-width="2.5"/>
+<circle cx="94.32" cy="491.15" r="4" fill="#9333ea"><title>Kosaraju / cyclic: 0.0104 ms</title></circle>
+<circle cx="162.00" cy="473.15" r="4" fill="#9333ea"><title>Kosaraju / cyclic: 0.0592 ms</title></circle>
+<circle cx="810.00" cy="388.00" r="4" fill="#9333ea"><title>Kosaraju / cyclic: 0.2900 ms</title></circle>
+<path d="M850 295 h24" stroke="#9333ea" stroke-width="3"/>
+<text x="885" y="300" font-size="14">Kosaraju / cyclic</text>
+<polyline points="94.32,492.02 162.00,471.46 810.00,438.74" fill="none" stroke="#ea580c" stroke-width="2.5"/>
+<circle cx="94.32" cy="492.02" r="4" fill="#ea580c"><title>TopologicalSort / DAG: 0.0081 ms</title></circle>
+<circle cx="162.00" cy="471.46" r="4" fill="#ea580c"><title>TopologicalSort / DAG: 0.0638 ms</title></circle>
+<circle cx="810.00" cy="438.74" r="4" fill="#ea580c"><title>TopologicalSort / DAG: 0.1525 ms</title></circle>
+<path d="M850 335 h24" stroke="#ea580c" stroke-width="3"/>
+<text x="885" y="340" font-size="14">TopologicalSort / DAG</text>
+<polyline points="94.32,493.75 162.00,485.00 810.00,474.33" fill="none" stroke="#475569" stroke-width="2.5"/>
+<circle cx="94.32" cy="493.75" r="4" fill="#475569"><title>TopologicalSort / cyclic: 0.0034 ms</title></circle>
+<circle cx="162.00" cy="485.00" r="4" fill="#475569"><title>TopologicalSort / cyclic: 0.0271 ms</title></circle>
+<circle cx="810.00" cy="474.33" r="4" fill="#475569"><title>TopologicalSort / cyclic: 0.0560 ms</title></circle>
+<path d="M850 375 h24" stroke="#475569" stroke-width="3"/>
+<text x="885" y="380" font-size="14">TopologicalSort / cyclic</text>
+</g></svg>

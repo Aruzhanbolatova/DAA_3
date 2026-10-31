@@ -1,0 +1,69 @@
+Reproduce experiments
+====================
+In IntelliJ, open Benchmark.java and run Benchmark.main(). Set the working
+ directory to the DAA_3 project root. Java 17 or newer is required.
+The demonstration in main.java remains separate.
+
+Files
+-----
+runs.csv: all 105 individual timed runs (21 configurations x 5 runs).
+benchmark.csv: 21 mean results, nanoseconds and average operation counts.
+results.md: readable table plus execution environment.
+Running Benchmark replaces these three generated files.
+
+Generation
+----------
+Configurations (V,E): (10,30), (100,500), (1000,5000).
+Seed 42 is passed separately for each graph size/type.
+Undirected graphs start with a random spanning tree (each vertex v>0 connects
+ to an earlier vertex), then add random unique unordered endpoint pairs.
+Weights are integers 1..100. No self-loops. Duplicate weights are allowed.
+DAG edges always go from a smaller vertex ID to a larger ID.
+Cyclic graphs begin with 0->1 and 1->0, then add unique directed edges.
+Both directed types have exactly E edges and no self-loops.
+
+Measurement
+-----------
+Graphs are generated before timing. Each algorithm/configuration has ten
+warm-up executions, followed by five timed executions of the SAME graph.
+System.nanoTime() measures the whole algorithm, including internal list/heap
+allocation, graph preparation and counters. The mean uses all five runs.
+A volatile sink retains outputs after the timer stops. Dijkstra starts at 0.
+Cyclic topological runs include throwing and catching the cycle exception.
+Correctness checks before measurement verify matching MST weights,
+connectivity, a successful DAG sort and rejection of a guaranteed cycle.
+
+Counters
+--------
+edge_examinations: explicit edge-loop iterations inside the algorithm.
+Prim includes E preparation scans and 2E adjacency scans on an undirected graph.
+Dijkstra includes E validation/preparation scans plus reachable adjacency scans.
+Kosaraju includes original DFS, reversal and reverse DFS: 3E.
+Topological sort includes E indegree scans plus outgoing scans of processed
+vertices. It scans 2E on a DAG and may stop earlier on a cyclic graph.
+Kruskal counts only selection-loop scans; sorting comparisons are separate.
+comparisons: calls to sorting/priority-queue comparators, not every condition.
+find_calls: ALL DSU find invocations, including recursive calls.
+union_calls: all DSU union calls, including unsuccessful merges.
+parent_traversals: non-root steps inside find, including recursive steps.
+Zero means the algorithm does not use that counter category.
+Counters are implementation-specific, so raw totals are not equivalent units
+of work between algorithms. Instrumentation contributes to measured time.
+
+Limitations
+-----------
+This is an educational benchmark, not JMH. JVM compilation, garbage collection,
+OS scheduling and fixed execution order affect timing. Re-running preserves
+graphs and procedures but does not produce identical execution times.
+V and E increase together in these configurations; their independent effects
+cannot be inferred. Three points and five runs do not establish a universal
+ranking or prove theoretical complexity. The generated tables record the
+actual Java version and OS used; Java 17 compatibility is compile-checked.
+
+Checks
+------
+GraphGeneratorTest.main() validates exact graph sizes, fixed-seed reproducibility,
+connectivity, DAG ordering, cycles and predictable operation counts.
+WeightedAlgorithmsTest, KosarajuTest and TopologicalSortTest remain separate
+plain-Java test entry points. These main-based tests must be run explicitly;
+Gradle's default JUnit discovery does not execute their main methods.

@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-
 public class TopologicalSortTest {
     private static void checkOrder(DirectedGraph graph) {
         ArrayList<Integer> order = TopologicalSort.sort(graph);
@@ -18,7 +17,6 @@ public class TopologicalSortTest {
             }
         }
     }
-
     private static void checkCycle(DirectedGraph graph) {
         try {
             TopologicalSort.sort(graph);
@@ -27,7 +25,6 @@ public class TopologicalSortTest {
         }
         throw new AssertionError("Cycle was not detected");
     }
-
     public static void main(String[] args) {
         checkOrder(new DirectedGraph(1));
         checkOrder(new DirectedGraph(4));
